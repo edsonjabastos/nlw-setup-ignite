@@ -5,16 +5,7 @@ const app = Fastify();
 const prisma = new PrismaClient();
 app.register(cors);
 app.get("/", () => {
-  const habits = prisma.habit
-    .findMany
-    //   {
-    //   where: {
-    //     title: {
-    //       startsWith: "Me",
-    //     },
-    //   },
-    // }
-    ();
+  const habits = prisma.habit.findMany();
   return habits;
 });
 
