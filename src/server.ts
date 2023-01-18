@@ -1,9 +1,21 @@
 import Fastify from "fastify";
-
+import cors from "@fastify/cors";
+import { PrismaClient } from "@prisma/client";
 const app = Fastify();
-
+const prisma = new PrismaClient();
+app.register(cors);
 app.get("/", () => {
-  return "Hello World";
+  const habits = prisma.habit
+    .findMany
+    //   {
+    //   where: {
+    //     title: {
+    //       startsWith: "Me",
+    //     },
+    //   },
+    // }
+    ();
+  return habits;
 });
 
 app
